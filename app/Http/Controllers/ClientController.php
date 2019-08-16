@@ -6,16 +6,16 @@ use App\Client;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class ClientController extends Controller
+class ClientController extends BaseController
 {
     /**
      * Display a listing of the resource.
      *
-     * @return void
+     * @return Response
      */
     public function index()
     {
-        return response()->json(Client::all());
+        return $this->sendResponse(Client::all());
     }
 
     /**
@@ -33,11 +33,11 @@ class ClientController extends Controller
      * Display the specified resource.
      *
      * @param Client $client
-     * @return void
+     * @return Response
      */
     public function show(Client $client)
     {
-        return response()->json($client);
+        return $this->sendResponse($client);
     }
 
     /**
