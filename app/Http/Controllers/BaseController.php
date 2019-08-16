@@ -10,14 +10,19 @@ class BaseController extends Controller
      * success response method.
      *
      * @param $result
+     * @param  null  $message
      * @return Response
      */
-    public function sendResponse($result)
+    public function sendResponse($result, $message = null)
     {
         $response = [
             'success' => true,
             'data' => $result,
         ];
+
+        if (isset($message)) {
+            $response['message'] = $message;
+        }
 
         return response()->json($response, 200);
     }
