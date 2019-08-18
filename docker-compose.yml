@@ -1,0 +1,45 @@
+version: "3.1"
+services:
+
+    mailhog:
+      image: mailhog/mailhog:latest
+      container_name: docker-mailhog
+      ports:
+        - "8081:8025"
+
+    redis:
+      image: redis:alpine
+      container_name: docker-redis
+
+    mysql:
+      image: mysql:8.0
+      container_name: docker-mysql
+      command: --default-authentication-plugin=mysql_native_password
+      restart: always
+      working_dir: /application
+      volumes:
+        - .:/application
+      environment:
+        - MYSQL_ROOT_PASSWORD=root
+        - MYSQL_DATABASE=database
+      ports:
+        - "8082:3306"
+
+    webserver:
+      image: nginx:alpine
+      container_name: docker-webserver
+      working_dir: /application
+      volumes:
+          - .:/application
+          - ./.docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      ports:
+       - "8080:80"
+
+    php-fpm:
+      build: .docker/php-fpm
+      container_name: docker-php-fpm
+      working_dir: /application
+      volumes:
+        - .:/application
+        - ./.docker/php-fpm/php-ini-overrides.ini:/etc/php/7.3/fpm/conf.d/99-overrides.ini
+
