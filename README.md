@@ -34,13 +34,20 @@ You can check all the laravel related dependecies [here](https://laravel.com/doc
 `git clone git@github.com:nicp0nim/rest-api.git`<br>
 `cd rest-api`<br>
 `cp .env.example .env`<br>
-2. Install needed packages.<br>
-`composer install`<br>
-3. Migrate, install passport and seed database with fake data.<br>
-`php artisan migrate:fresh --seed`<br>
-`php artisan passport:install`<br>
-4. Start docker.<br>
+2. Start docker.<br>
 `docker-compose up -d`
+3. Install needed packages.<br>
+`docker exec php-fpm composer install`<br>
+4. Migrate, install passport and seed database with fake data.<br>
+`docker exec php-fpm php artisan key:generate`<br>
+`docker exec php-fpm php artisan migrate:fresh --seed`<br>
+`docker exec php-fpm php artisan passport:install`<br>
+
+
+<small>This way is to setup app with docker, but if you want use it without docker just skip second step and replace
+ from commands `docker exec php-fpm` part. For example 3 step without Docker should look like:<br>
+ `composer install`</small>
+<br>
 
 ## API Endpoints and Routes
 Laravel follows the Model View Controller (MVC) pattern I have creatd models associated with each resource. You can check in the **routes/api.php** file for all the routes that map to controllers in order to send out JSON data that make requests to our API.

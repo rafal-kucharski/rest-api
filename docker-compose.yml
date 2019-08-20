@@ -3,17 +3,17 @@ services:
 
     mailhog:
       image: mailhog/mailhog:latest
-      container_name: docker-mailhog
+      container_name: mailhog
       ports:
         - "8081:8025"
 
     redis:
       image: redis:alpine
-      container_name: docker-redis
+      container_name: redis
 
     mysql:
-      image: mysql:8.0
-      container_name: docker-mysql
+      image: mysql:5.7
+      container_name: mysql
       command: --default-authentication-plugin=mysql_native_password
       restart: always
       working_dir: /application
@@ -27,7 +27,7 @@ services:
 
     webserver:
       image: nginx:alpine
-      container_name: docker-webserver
+      container_name: webserver
       working_dir: /application
       volumes:
           - .:/application
@@ -37,7 +37,7 @@ services:
 
     php-fpm:
       build: .docker/php-fpm
-      container_name: docker-php-fpm
+      container_name: php-fpm
       working_dir: /application
       volumes:
         - .:/application
