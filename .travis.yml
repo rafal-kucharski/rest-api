@@ -1,5 +1,15 @@
 language: php
+
+services:
+  - mysql
 before_script:
-  - composer install
-  - cp .env.example .env
+  - cp .env.travis .env
+  - mysql -e 'create database testing;'
+  - composer self-update
+  - composer install --no-interaction
   - php artisan key:generate
+  - php artisan migrate --seed
+  - php artisan passport:install
+script:
+  - vendor/bin/phpunit
+

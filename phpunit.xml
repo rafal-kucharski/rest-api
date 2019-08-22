@@ -8,18 +8,15 @@
          convertWarningsToExceptions="true"
          processIsolation="false"
          stopOnFailure="false">
-    <testsuites>
-        <testsuite name="Unit">
-            <directory suffix="Test.php">./tests/Unit</directory>
-        </testsuite>
 
-        <testsuite name="Feature">
-            <directory suffix="Test.php">./tests/Feature</directory>
+    <testsuites>
+        <testsuite name="Application Test Suite">
+            <directory>./tests/</directory>
         </testsuite>
     </testsuites>
     <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./app</directory>
+        <whitelist>
+            <directory suffix=".php">app/</directory>
         </whitelist>
     </filter>
     <php>
@@ -27,7 +24,9 @@
         <server name="BCRYPT_ROUNDS" value="4"/>
         <server name="CACHE_DRIVER" value="array"/>
         <server name="MAIL_DRIVER" value="array"/>
+        <server name="QUEUE_DRIVER" value="sync"/>
         <server name="QUEUE_CONNECTION" value="sync"/>
         <server name="SESSION_DRIVER" value="array"/>
+        <server name="DB_CONNECTION" value="testing"/>
     </php>
 </phpunit>
