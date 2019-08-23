@@ -34,18 +34,12 @@
                 position: relative;
             }
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
             .content {
                 text-align: center;
             }
 
             .title {
-                font-size: 84px;
+                font-size: 64px;
             }
 
             .links > a {
@@ -59,7 +53,7 @@
             }
 
             .m-b-md {
-                margin-bottom: 30px;
+                margin-bottom: 10px;
             }
         </style>
     </head>
@@ -68,11 +62,12 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    RestAPI <small>v.1</small>
+                    RestAPI <small>v1.2</small>
                 </div>
 
                 <div class="links">
                     <a href="https://github.com/nicp0nim/rest-api">GitHub</a>
+                    <a href="https://travis-ci.com/nicp0nim/rest-api">Travis</a>
                 </div>
             </div>
         </div>
