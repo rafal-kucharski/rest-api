@@ -21,7 +21,7 @@ class AuthController extends BaseController
             $token = $user->createToken('RestApi')->accessToken;
             return $this->sendResponse($token);
         } else {
-            return $this->sendError('Unauthorized.', [], 401);
+            return $this->sendError('Unauthorized.', [], 400);
         }
     }
 
@@ -34,7 +34,7 @@ class AuthController extends BaseController
             'c_password' => 'required|same:password',
         ]);
         if ($validator->fails()) {
-            return $this->sendError('Validation error.', $validator->errors(), 401);
+            return $this->sendError('Validation error.', $validator->errors(), 400);
         }
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
