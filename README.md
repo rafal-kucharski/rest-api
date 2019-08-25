@@ -55,7 +55,7 @@ Laravel follows the Model View Controller (MVC) pattern I have creatd models ass
 ```
 +-----------+----------------------------+-----------------+--------------------------------------------------+--------------+
 | Method    | URI                        | Name            | Action                                           | Middleware   |
-+--------+-----------+----------------------------+-----------------+-----------------------------------------+--------------+
++-----------+----------------------------+-----------------+--------------------------------------------------+--------------+
 | GET|HEAD  | /                          |                 | Closure                                          | web          |
 | GET|HEAD  | api/clients                | clients.index   | App\Http\Controllers\ClientController@index      | api,auth:api |
 | POST      | api/clients                | clients.store   | App\Http\Controllers\ClientController@store      | api,auth:api |
