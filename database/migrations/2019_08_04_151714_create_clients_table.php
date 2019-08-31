@@ -22,6 +22,7 @@ class CreateClientsTable extends Migration
             $table->string('post_code');
             $table->string('email');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
