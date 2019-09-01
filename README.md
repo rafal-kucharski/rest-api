@@ -5,7 +5,16 @@
 ![Last commit](https://img.shields.io/github/last-commit/nicp0nim/rest-api)
 [![License](https://img.shields.io/github/license/nicp0nim/rest-api)](https://github.com/nicp0nim/rest-api/blob/master/LICENSE)
 
-Laravel 5.8 Restful API boiler plate with auth, crud and json responses.
+Laravel 5.8 Restful API boiler plate with:
+<small>
+ - auth;
+ - roles;
+ - permissions; 
+ - crud;
+ - json responses;
+ - phpunit and travis tests;
+ - database seeder with factories;
+ </small>
 
 ## Requirements
 
