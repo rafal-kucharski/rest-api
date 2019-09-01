@@ -66,11 +66,25 @@ Laravel follows the Model View Controller (MVC) pattern I have creatd models ass
 | Method    | URI                        | Name            | Action                                           | Middleware   |
 +-----------+----------------------------+-----------------+--------------------------------------------------+--------------+
 | GET|HEAD  | /                          |                 | Closure                                          | web          |
++-----------+----------------------------+-----------------+--------------------------------------------------+--------------+
 | GET|HEAD  | api/clients                | clients.index   | App\Http\Controllers\ClientController@index      | api,auth:api |
 | POST      | api/clients                | clients.store   | App\Http\Controllers\ClientController@store      | api,auth:api |
 | DELETE    | api/clients/{client}       | clients.destroy | App\Http\Controllers\ClientController@destroy    | api,auth:api |
 | PUT|PATCH | api/clients/{client}       | clients.update  | App\Http\Controllers\ClientController@update     | api,auth:api |
 | GET|HEAD  | api/clients/{client}       | clients.show    | App\Http\Controllers\ClientController@show       | api,auth:api |
++-----------+----------------------------+-----------------+--------------------------------------------------+--------------+
+| GET|HEAD  | api/roles                  | roles.index     | App\Http\Controllers\RoleController@index        | api,auth:api |
+| POST      | api/roles                  | roles.store     | App\Http\Controllers\RoleController@store        | api,auth:api |
+| DELETE    | api/roles/{client}         | roles.destroy   | App\Http\Controllers\RoleController@destroy      | api,auth:api |
+| PUT|PATCH | api/roles/{client}         | roles.update    | App\Http\Controllers\RoleController@update       | api,auth:api |
+| GET|HEAD  | api/roles/{client}         | roles.show      | App\Http\Controllers\RoleController@show         | api,auth:api |
++-----------+----------------------------+-----------------+--------------------------------------------------+--------------+
+| GET|HEAD  | api/users                  | users.index     | App\Http\Controllers\UserController@index        | api,auth:api |
+| POST      | api/users                  | users.store     | App\Http\Controllers\UserController@store        | api,auth:api |
+| DELETE    | api/users/{client}         | users.destroy   | App\Http\Controllers\UserController@destroy      | api,auth:api |
+| PUT|PATCH | api/users/{client}         | users.update    | App\Http\Controllers\UserController@update       | api,auth:api |
+| GET|HEAD  | api/users/{client}         | users.show      | App\Http\Controllers\UserController@show         | api,auth:api |
++-----------+----------------------------+-----------------+--------------------------------------------------+--------------+
 | POST      | api/login                  | auth.login      | App\Http\Controllers\AuthController@login        | api          |
 | GET|HEAD  | api/logout                 | auth.logout     | App\Http\Controllers\AuthController@logout       | api,auth:api |
 | GET|HEAD  | api/profile                | auth.profile    | App\Http\Controllers\AuthController@profile      | api,auth:api |
