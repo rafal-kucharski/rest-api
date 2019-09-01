@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Client;
 use App\User;
+use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
 class ClientTest extends TestCase
@@ -11,6 +12,7 @@ class ClientTest extends TestCase
     public function testsClientsAreCreatedCorrectly()
     {
         $user = factory(User::class)->create();
+        $user->assignRole([Role::where('name', 'User')->first()->id]);
         $token = $user->createToken('RestApi')->accessToken;
         $headers = ['Authorization' => "Bearer $token"];
         $payload = [
@@ -42,6 +44,7 @@ class ClientTest extends TestCase
     public function testsClientsAreUpdatedCorrectly()
     {
         $user = factory(User::class)->create();
+        $user->assignRole([Role::where('name', 'User')->first()->id]);
         $token = $user->createToken('RestApi')->accessToken;
         $headers = ['Authorization' => "Bearer $token"];
         $article = factory(Client::class)->create([
@@ -82,6 +85,7 @@ class ClientTest extends TestCase
     public function testsClientsAreDeletedCorrectly()
     {
         $user = factory(User::class)->create();
+        $user->assignRole([Role::where('name', 'User')->first()->id]);
         $token = $user->createToken('RestApi')->accessToken;
         $headers = ['Authorization' => "Bearer $token"];
         $article = factory(Client::class)->create([
@@ -118,6 +122,7 @@ class ClientTest extends TestCase
         ]);
 
         $user = factory(User::class)->create();
+        $user->assignRole([Role::where('name', 'User')->first()->id]);
         $token = $user->createToken('RestApi')->accessToken;
         $headers = ['Authorization' => "Bearer $token"];
 

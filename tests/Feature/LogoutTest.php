@@ -3,13 +3,15 @@
 namespace Tests\Feature;
 
 use App\User;
+use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
 class LogoutTest extends TestCase
 {
     public function testUserIsLoggedOutProperly()
     {
-        $user = factory(User::class)->create(['email' => 'admin@mail.com']);
+        $user = factory(User::class)->create(['email' => 'user@mail.com']);
+        $user->assignRole([Role::where('name', 'User')->first()->id]);
         $token = $user->createToken('RestApi')->accessToken;
         $headers = ['Authorization' => "Bearer $token"];
 
@@ -20,7 +22,7 @@ class LogoutTest extends TestCase
     public function testUserWithNullToken()
     {
         // Simulating login
-        $user = factory(User::class)->create(['email' => 'admin@mail.com']);
+        $user = factory(User::class)->create(['email' => 'user@mail.com']);
         $token = $user->createToken('RestApi')->accessToken;
         $headers = ['Authorization' => "Bearer $token"];
 

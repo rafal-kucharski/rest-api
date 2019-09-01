@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
             'remember_token' => Str::random(10),
         ])->assignRole([Role::where('name', 'Admin')->first()->id]);
 
-        $users = factory(User::class, 49)->create();
+        $users = factory(User::class, 9)->create();
         foreach ($users as $user) {
             $user->assignRole([Role::where('name', 'User')->first()->id]);
         }

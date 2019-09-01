@@ -9,8 +9,8 @@ class RegisterTest extends TestCase
     public function testsRegistersSuccessfully()
     {
         $payload = [
-            'name' => 'Admin',
-            'email' => 'admin@mail.com',
+            'name' => 'User',
+            'email' => 'user@mail.com',
             'password' => 'password',
             'c_password' => 'password',
         ];
@@ -42,8 +42,8 @@ class RegisterTest extends TestCase
     public function testsRequirePasswordConfirmation()
     {
         $payload = [
-            'name' => 'Admin',
-            'email' => 'admin@mail.com',
+            'name' => 'User',
+            'email' => 'user@mail.com',
             'password' => 'password',
         ];
 
