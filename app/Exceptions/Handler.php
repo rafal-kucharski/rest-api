@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\JsonResponse;
+use Spatie\Permission\Exceptions\UnauthorizedException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -50,9 +51,14 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof UnauthorizedException) {
+            return response()->json(['success' => false, 'message' => 'User does not have the right permissions.'], 403);
+        }
+
         if ($exception instanceof NotFoundHttpException || $exception instanceof ModelNotFoundException) {
             return response()->json(['success' => false, 'message' => 'Not Found'], 404);
         }
+
         return parent::render($request, $exception);
     }
 }

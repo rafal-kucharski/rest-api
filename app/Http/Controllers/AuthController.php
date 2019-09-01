@@ -27,7 +27,9 @@ class AuthController extends BaseController
 
     public function register(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $input = $request->all();
+
+        $validator = Validator::make($input, [
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required',
@@ -36,7 +38,7 @@ class AuthController extends BaseController
         if ($validator->fails()) {
             return $this->sendError('Validation error.', $validator->errors(), 400);
         }
-        $input = $request->all();
+
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
         $token = $user->createToken('RestApi')->accessToken;
@@ -54,7 +56,8 @@ class AuthController extends BaseController
 
     public function profile()
     {
-        $user = Auth::user();
+        $userId = Auth::user()->id;
+        $user = User::with('roles')->where('id', $userId)->firstOrFail();
         return $this->sendResponse($user);
     }
 }
